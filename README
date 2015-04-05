@@ -1,0 +1,12 @@
+This are some DDL scripts I've created in order to automatically
+parttition zabbix 2.x tables when using postgresql 9.2+
+
+This code is somewhat based on an existing howto at zabbix's website:
+ https://www.zabbix.org/wiki/Docs/howto/zabbix2_postgresql_autopartitioning
+
+However, a few gotchas has been fixed (like race condition during child
+table creation), and another minor features has been added (like weekly
+partitioning support), etc.
+
+Regards
+Pablo Ruiz <pablo.ruiz _at_ gmail.com>
