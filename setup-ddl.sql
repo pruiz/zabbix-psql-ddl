@@ -5,7 +5,7 @@
 
 BEGIN;
 
-CREATE SCHEMA partitions
+--CREATE SCHEMA partitions
 --  AUTHORIZATION zabbix
 ;
 
@@ -64,7 +64,7 @@ BEGIN
 	IF selector = 'day' THEN
 		timeformat := 'YYYYMMDD';
 	ELSIF selector = 'week' THEN
-		timeformat := 'YYYY"w"WW';
+		timeformat := 'YYYY"w"IW';
 	ELSIF selector = 'month' THEN
 		timeformat := 'YYYYMM';
 	ELSE
@@ -145,14 +145,14 @@ $$;
 --INSERT INTO test (itemid, clock) VALUES (2,extract(epoch from (now() - '1 week'::interval)));
 --SELECT delete_partitions('1 weeks', 'week');
 
-CREATE TRIGGER partitioning_trigger BEFORE INSERT ON history           FOR EACH ROW EXECUTE PROCEDURE partitioned_insert_handler('week');
-CREATE TRIGGER partitioning_trigger BEFORE INSERT ON history_sync      FOR EACH ROW EXECUTE PROCEDURE partitioned_insert_handler('week');
-CREATE TRIGGER partitioning_trigger BEFORE INSERT ON history_uint      FOR EACH ROW EXECUTE PROCEDURE partitioned_insert_handler('week');
-CREATE TRIGGER partitioning_trigger BEFORE INSERT ON history_str       FOR EACH ROW EXECUTE PROCEDURE partitioned_insert_handler('week');
-CREATE TRIGGER partitioning_trigger BEFORE INSERT ON history_str_sync  FOR EACH ROW EXECUTE PROCEDURE partitioned_insert_handler('week');
-CREATE TRIGGER partitioning_trigger BEFORE INSERT ON history_text      FOR EACH ROW EXECUTE PROCEDURE partitioned_insert_handler('week');
-CREATE TRIGGER partitioning_trigger BEFORE INSERT ON history_log       FOR EACH ROW EXECUTE PROCEDURE partitioned_insert_handler('week');
-CREATE TRIGGER partitioning_trigger BEFORE INSERT ON trends            FOR EACH ROW EXECUTE PROCEDURE partitioned_insert_handler('month');
-CREATE TRIGGER partitioning_trigger BEFORE INSERT ON trends_uint       FOR EACH ROW EXECUTE PROCEDURE partitioned_insert_handler('month');
-
+--CREATE TRIGGER partitioning_trigger BEFORE INSERT ON history           FOR EACH ROW EXECUTE PROCEDURE partitioned_insert_handler('week');
+--CREATE TRIGGER partitioning_trigger BEFORE INSERT ON history_sync      FOR EACH ROW EXECUTE PROCEDURE partitioned_insert_handler('week');
+--CREATE TRIGGER partitioning_trigger BEFORE INSERT ON history_uint      FOR EACH ROW EXECUTE PROCEDURE partitioned_insert_handler('week');
+--CREATE TRIGGER partitioning_trigger BEFORE INSERT ON history_str       FOR EACH ROW EXECUTE PROCEDURE partitioned_insert_handler('week');
+--CREATE TRIGGER partitioning_trigger BEFORE INSERT ON history_str_sync  FOR EACH ROW EXECUTE PROCEDURE partitioned_insert_handler('week');
+--CREATE TRIGGER partitioning_trigger BEFORE INSERT ON history_text      FOR EACH ROW EXECUTE PROCEDURE partitioned_insert_handler('week');
+--CREATE TRIGGER partitioning_trigger BEFORE INSERT ON history_log       FOR EACH ROW EXECUTE PROCEDURE partitioned_insert_handler('week');
+--CREATE TRIGGER partitioning_trigger BEFORE INSERT ON trends            FOR EACH ROW EXECUTE PROCEDURE partitioned_insert_handler('month');
+--CREATE TRIGGER partitioning_trigger BEFORE INSERT ON trends_uint       FOR EACH ROW EXECUTE PROCEDURE partitioned_insert_handler('month');
+--
 COMMIT;
