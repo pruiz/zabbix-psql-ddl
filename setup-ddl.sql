@@ -64,7 +64,7 @@ BEGIN
 	IF selector = 'day' THEN
 		timeformat := 'YYYYMMDD';
 	ELSIF selector = 'week' THEN
-		timeformat := 'YYYY"w"IW';
+		timeformat := 'IYYY"w"IW';
 	ELSIF selector = 'month' THEN
 		timeformat := 'YYYYMM';
 	ELSE
